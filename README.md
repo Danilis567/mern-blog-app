@@ -96,10 +96,19 @@ router.get("/:id", async (req, res) => {
 ```
 
 router.get("/:id", async (req, res) => {...}) olarak tanımlanmıştır.
+
 Bu endpoint, bir blog yazısının ID'sine göre detaylarını getirir.
+
 Post.findById(req.params.id) metodu kullanılarak belirli bir ID'ye sahip yazı bulunur.
+
 Eğer yazı bulunamazsa, 404 (Not Found) durum koduyla birlikte "Yazı bulunamadı" mesajı JSON formatında gönderilir.
+
 Eğer yazı bulunursa, görüntüleme sayısını artırır (post.views += 1) ve bu değişiklikleri kaydeder (await post.save()).
+
 Son olarak, bulunan yazının detayları JSON formatında yanıt olarak gönderilir (res.json(post)).
+
 Eğer bir hata oluşursa, 500 (Internal Server Error) durum koduyla birlikte hata mesajı JSON formatında gönderilir.
-Bu iki endpoint, istemcilere genel blog yazılarını getirme ve belirli bir yazının detaylarını ID'ye göre getirme işlevselliğini sağlar. Ayrıca, özellikle ikinci endpoint'te yazının görüntülenme sayısını artırma özelliği de bulunmaktadır.
+
+Bu iki endpoint, istemcilere genel blog yazılarını getirme ve belirli bir yazının detaylarını ID'ye göre getirme işlevselliğini sağlar. 
+
+Ayrıca, özellikle ikinci endpoint'te yazının görüntülenme sayısını artırma özelliği de bulunmaktadır.
