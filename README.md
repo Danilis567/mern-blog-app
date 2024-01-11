@@ -53,6 +53,8 @@ if (!post) {
 bunun sayesinde sonsuz bir loader olucak tabi hata durumunda kötü çözüm ama sadece hatalar için değil get işlemi esnasında bekleme süresi boyunca ekranda bu çalışır 
 
 
+# Get işlemleri
+
 Bu API tarafındaki kod parçaları, iki farklı GET endpoint'i içeriyor. Birincisi, tüm blog yazılarını getiren genel bir endpoint, ikincisi ise belirli bir blog yazısının ID'sine göre detaylarını getiren özel bir endpoint. İşte bu kodları daha detaylı olarak açıklayan bir açıklama:
 
 Tüm Blog Yazılarını Getiren Endpoint:
@@ -113,6 +115,8 @@ Bu iki endpoint, istemcilere genel blog yazılarını getirme ve belirli bir yaz
 
 Ayrıca, özellikle ikinci endpoint'te yazının görüntülenme sayısını artırma özelliği de bulunmaktadır.
 
+# Post işlemleri
+
 
 ![image](https://github.com/Danilis567/mern-blog-app/assets/134603964/feecdd33-b106-40d8-bc8e-61fcfd340048)
 
@@ -137,3 +141,11 @@ router.post("/", async (req, res) => {
   }
 });
 ```
+
+![image](https://github.com/Danilis567/mern-blog-app/assets/134603964/eb4a8f62-5404-452a-818b-3e00d9a11adb)
+
+# Delete işlemleri
+
+Aslında anlatmaya gereken pek bir şey yok belli sonuçta 
+
+
