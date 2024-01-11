@@ -9,3 +9,38 @@ Proje içerisinde genel olarak Tailwind CSS kullanılsa da, bazı özel durumlar
 Tailwind CSS'in sunduğu hız ve esneklik, projenin stil yönetimini kolaylaştırdı ve hızlı bir geliştirme süreci sağladı. Tasarımım, minimalizmin getirdiği sadelikle dikkat çekiyor, böylece kullanıcılar içeriklere odaklanabilir ve siteyi rahatlıkla gezinebilir.
 
 Sonuç olarak, MERN stack ile geliştirdiğim bu blog sitesi, basit ve minimalist tasarımıyla dikkat çekerken, Vite ve Tailwind CSS kullanımıyla da geliştirme süreçlerini optimize etmeyi amaçladım.
+
+
+
+sitenin görüntüleri :
+
+![image](https://github.com/Danilis567/mern-blog-app/assets/134603964/e0497121-ade1-42c2-ad69-ba3b59c979e6)
+
+```
+  const { id } = useParams();
+  const uri = `http://localhost:4000/posts/${id}`;
+  const [post, setPost] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(uri);
+        setPost(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error.message);
+        setPost(null);
+      }
+    };
+
+    fetchData();
+  }, [id, uri]);
+
+  if (!post) {
+    return (
+      <div className="flex items-center justify-center my-64">
+        <Loader />
+      </div>
+    );
+  }
+
+```
