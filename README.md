@@ -34,13 +34,20 @@ sitenin görüntüleri :
 
     fetchData();
   }, [id, uri]);
+```
 
-  if (!post) {
+Bu kod, belirli bir gönderinin detaylarını çekme işlemini gerçekleştirir ve bu işlem sonunda kullanıcıya gönderi detaylarını gösterir.
+
+Hata durumunda ise kullanıcıya bir hata mesajı göstermez, ancak konsola hata mesajını yazar eğer bir hata olursa 
+
+```
+if (!post) {
     return (
       <div className="flex items-center justify-center my-64">
         <Loader />
       </div>
     );
   }
-
 ```
+
+bunun sayesinde sonsuz bir loader olucak tabi hata durumunda kötü çözüm ama sadece hatalar için değil get işlemi esnasında bekleme süresi boyunca ekranda bu çalışır 
