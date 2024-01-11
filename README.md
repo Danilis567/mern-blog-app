@@ -142,9 +142,13 @@ router.post("/", async (req, res) => {
 });
 ```
 
-![image](https://github.com/Danilis567/mern-blog-app/assets/134603964/eb4a8f62-5404-452a-818b-3e00d9a11adb)
 
 # Delete işlemleri
+
+
+![image](https://github.com/Danilis567/mern-blog-app/assets/134603964/eb4a8f62-5404-452a-818b-3e00d9a11adb)
+
+
 
 Aslında anlatmaya gereken pek bir şey yok belli sonuçta 
 
