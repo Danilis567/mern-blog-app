@@ -112,3 +112,28 @@ Eğer bir hata oluşursa, 500 (Internal Server Error) durum koduyla birlikte hat
 Bu iki endpoint, istemcilere genel blog yazılarını getirme ve belirli bir yazının detaylarını ID'ye göre getirme işlevselliğini sağlar. 
 
 Ayrıca, özellikle ikinci endpoint'te yazının görüntülenme sayısını artırma özelliği de bulunmaktadır.
+
+
+![image](https://github.com/Danilis567/mern-blog-app/assets/134603964/feecdd33-b106-40d8-bc8e-61fcfd340048)
+
+pek de bir güvenlik önlemi olmasa da buraya erişmeden önce bir şifre istiyor eğer bir kere giriş yapıldıysa localStronge de kaydediyor 
+
+![image](https://github.com/Danilis567/mern-blog-app/assets/134603964/166c7e0f-4eed-43cc-b4c5-acdf931a45da)
+id ve date otomatik olarak atanıyor sadece title ve content bölümünü biz berlirliyoruz olması gerektigi gibi .d
+content bölümü için ReactQuill paketini kullandım 
+
+
+POST endpoint: Yeni bir blog yazısı oluştur
+```
+router.post("/", async (req, res) => {
+  const { title, content } = req.body;
+  const newPost = new Post({ title, content });
+
+  try {
+    const savedPost = await newPost.save();
+    res.json(savedPost);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+```
