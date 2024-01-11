@@ -1,0 +1,62 @@
+.max-w-c {
+  max-width: 840px;
+}
+
+.max-w-b {
+  max-width: calc(720 - (30 * 2)) !important;
+  padding-right: 30px;
+  padding-left: 30px;
+  margin: auto;
+}
+
+.b {
+  border-bottom: 1px solid #1b1d25;
+}
+.by {
+  border-top: 1px solid #1b1d25;
+}
+
+.ib {
+  border: 1px solid #1b1d25;
+  color: white;
+  background-color: #131418;
+  outline: none;
+}
+
+.ql-editor-haserror .ql-toolbar.ql-snow + .ql-container.ql-snow {
+  border: 1px solid #f56565;
+  border-radius: 0.5rem;
+}
+.ql-toolbar.ql-snow + .ql-container.ql-snow {
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+pre,
+.ql-syntax {
+  background-color: #1b1d25;
+  color: white;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: justify;
+}
