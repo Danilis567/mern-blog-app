@@ -152,4 +152,93 @@ router.post("/", async (req, res) => {
 
 Aslında anlatmaya gereken pek bir şey yok belli sonuçta 
 
+DELETE endpoint: ID'ye göre bir blog yazısını sil
+
+```
+router.delete("/:id", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      return res.status(404).json({ message: "Yazı bulunamadı" });
+    }
+
+    await post.deleteOne();
+
+    res.json({ message: "Yazı başarıyla silindi" });
+  } catch (error) {
+    console.error("Yazı silinirken hata oluştu:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+```
+
+# Model
+Bu kod parçası, MongoDB üzerinde kullanılmak üzere bir Mongoose şeması ve bu şemaya dayalı bir model oluşturuyor 
+
+Blog Yazısı Şemasının Tanımlanması
+
+```
+const PostSchema = new mongoose.Schema({
+  title: String, // Yazı başlığı
+  content: String, // Yazı içeriği
+  date: { type: Date, default: Date.now }, // Yazının tarihi, varsayılan olarak şu anki zaman
+  views: { type: Number, default: 0 }, // Görüntüleme sayısı, varsayılan olarak sıfır
+});
+```
+
+mongoose.Schema kullanılarak, MongoDB'de kullanılacak belirli bir şema (schema) tanımlanır. 
+
+Bu şema, bir blog yazısının sahip olabileceği özellikleri belirtir.
+
+Yazının başlığı (title) ve içeriği (content) string türünde, tarih (date) ve görüntüleme sayısı (views) ise sırasıyla Date ve Number türünde alanlardır.
+
+date alanı, varsayılan olarak şu anki zamanı alır (default: Date.now).
+
+views alanı ise varsayılan olarak sıfır alır (default: 0).
+
+```
+
+const mongoose = require("mongoose");
+
+// Contact Şeması
+const ContactSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    maxlength: 100, // İsim alanının maksimum karakter sayısı
+  },
+  email: {
+    type: String,
+    required: true,
+    maxlength: 150, // Email alanının maksimum karakter sayısı
+  },
+  phone: {
+    type: String,
+    required: true,
+    maxlength: 20, // Telefon alanının maksimum karakter sayısı
+  },
+  message: {
+    type: String,
+    required: true,
+  },
+  date: { type: Date, default: Date.now },
+});
+
+// Contact modeli oluşturuluyor
+const Contact = mongoose.model("Contact", ContactSchema);
+
+// Modül, Contact modelini dışa aktarıyor
+module.exports = Contact;
+
+```
+
+mongoose.Schema kullanılarak, MongoDB'de kullanılacak belirli bir şema (schema) tanımlanır.
+
+Bu şema, bir iletişim formu kaydının sahip olabileceği özellikleri belirtir.
+
+name, email, phone ve message alanları string türünde ve belirli kurallara sahip olarak tanımlanmıştır.
+
+name, email, ve phone alanları zorunlu (required: true), aynı zamanda belirli maksimum karakter sınırlarıyla (maxlength) sınırlanmıştır.
+
+date alanı, varsayılan olarak şu anki zamanı alır (default: Date.now).
 
