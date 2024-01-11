@@ -51,3 +51,55 @@ if (!post) {
 ```
 
 bunun sayesinde sonsuz bir loader olucak tabi hata durumunda kötü çözüm ama sadece hatalar için değil get işlemi esnasında bekleme süresi boyunca ekranda bu çalışır 
+
+
+Bu API tarafındaki kod parçaları, iki farklı GET endpoint'i içeriyor. Birincisi, tüm blog yazılarını getiren genel bir endpoint, ikincisi ise belirli bir blog yazısının ID'sine göre detaylarını getiren özel bir endpoint. İşte bu kodları daha detaylı olarak açıklayan bir açıklama:
+
+Tüm Blog Yazılarını Getiren Endpoint:
+
+```
+router.get("/", async (req, res) => {
+  try {
+    const posts = await Post.find();
+    res.json(posts);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+```
+
+router.get("/", async (req, res) => {...}) olarak tanımlanmıştır.
+Bu endpoint, tüm blog yazılarını MongoDB veritabanından çeker.
+Post.find() metodunu kullanarak bütün blog yazıları alınır.
+Başarılı bir şekilde alındığında, bu yazılar JSON formatında yanıt olarak gönderilir (res.json(posts)).
+Eğer bir hata oluşursa, 500 (Internal Server Error) durum koduyla birlikte hata mesajı JSON formatında gönderilir.
+
+Belirli Bir Blog Yazısını ID'ye Göre Getiren Endpoint:
+
+```
+router.get("/:id", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      return res.status(404).json({ message: "Yazı bulunamadı" });
+    }
+
+    // Görüntüleme sayısını artır
+    post.views += 1;
+    await post.save();
+
+    res.json(post);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+```
+
+router.get("/:id", async (req, res) => {...}) olarak tanımlanmıştır.
+Bu endpoint, bir blog yazısının ID'sine göre detaylarını getirir.
+Post.findById(req.params.id) metodu kullanılarak belirli bir ID'ye sahip yazı bulunur.
+Eğer yazı bulunamazsa, 404 (Not Found) durum koduyla birlikte "Yazı bulunamadı" mesajı JSON formatında gönderilir.
+Eğer yazı bulunursa, görüntüleme sayısını artırır (post.views += 1) ve bu değişiklikleri kaydeder (await post.save()).
+Son olarak, bulunan yazının detayları JSON formatında yanıt olarak gönderilir (res.json(post)).
+Eğer bir hata oluşursa, 500 (Internal Server Error) durum koduyla birlikte hata mesajı JSON formatında gönderilir.
+Bu iki endpoint, istemcilere genel blog yazılarını getirme ve belirli bir yazının detaylarını ID'ye göre getirme işlevselliğini sağlar. Ayrıca, özellikle ikinci endpoint'te yazının görüntülenme sayısını artırma özelliği de bulunmaktadır.
