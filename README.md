@@ -16,7 +16,7 @@ sitenin görüntüleri :
 
 ![image](https://github.com/Danilis567/mern-blog-app/assets/134603964/e0497121-ade1-42c2-ad69-ba3b59c979e6)
 
-```
+```jsx
   const { id } = useParams();
   const uri = `http://localhost:4000/posts/${id}`;
   const [post, setPost] = useState(null);
@@ -40,7 +40,7 @@ Bu kod, belirli bir gönderinin detaylarını çekme işlemini gerçekleştirir 
 
 Hata durumunda ise kullanıcıya bir hata mesajı göstermez, ancak konsola hata mesajını yazar eğer bir hata olursa 
 
-```
+```jsx
 if (!post) {
     return (
       <div className="flex items-center justify-center my-64">
@@ -59,7 +59,7 @@ Bu API tarafındaki kod parçaları, iki farklı GET endpoint'i içeriyor. Birin
 
 Tüm Blog Yazılarını Getiren Endpoint:
 
-```
+```jsx
 router.get("/", async (req, res) => {
   try {
     const posts = await Post.find();
@@ -78,7 +78,7 @@ Eğer bir hata oluşursa, 500 (Internal Server Error) durum koduyla birlikte hat
 
 Belirli Bir Blog Yazısını ID'ye Göre Getiren Endpoint:
 
-```
+```jsx
 router.get("/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -128,7 +128,7 @@ content bölümü için ReactQuill paketini kullandım
 
 
 POST endpoint: Yeni bir blog yazısı oluştur
-```
+```jsx
 router.post("/", async (req, res) => {
   const { title, content } = req.body;
   const newPost = new Post({ title, content });
@@ -154,7 +154,7 @@ Aslında anlatmaya gereken pek bir şey yok belli sonuçta
 
 DELETE endpoint: ID'ye göre bir blog yazısını sil
 
-```
+```jsx
 router.delete("/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -177,7 +177,7 @@ Bu kod parçası, MongoDB üzerinde kullanılmak üzere bir Mongoose şeması ve
 
 Blog Yazısı Şemasının Tanımlanması
 
-```
+```jsx
 const PostSchema = new mongoose.Schema({
   title: String, // Yazı başlığı
   content: String, // Yazı içeriği
@@ -196,7 +196,7 @@ date alanı, varsayılan olarak şu anki zamanı alır (default: Date.now).
 
 views alanı ise varsayılan olarak sıfır alır (default: 0).
 
-```
+```jsx
 
 const mongoose = require("mongoose");
 
