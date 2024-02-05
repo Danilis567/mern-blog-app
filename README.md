@@ -242,3 +242,5 @@ name, email, ve phone alanları zorunlu (required: true), aynı zamanda belirli 
 
 date alanı, varsayılan olarak şu anki zamanı alır (default: Date.now).
 
+basit ve yönetilebilir kolaylıkla başka küçük projeler için uyarlanabilir 
+
